@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('staff_id')->unique();
             $table->string('position')->nullable();
+            $table->string('photo')->nullable();
             $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
