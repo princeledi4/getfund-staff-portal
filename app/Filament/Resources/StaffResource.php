@@ -100,7 +100,7 @@ class StaffResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
