@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DepartmentResource\Pages;
 use App\Filament\Resources\DepartmentResource\RelationManagers;
+use Filament\Forms\Components\Textarea;
 
 class DepartmentResource extends Resource
 {
@@ -31,6 +32,9 @@ class DepartmentResource extends Resource
                     ->required()
                     ->minLength(3)
                     ->maxLength(255)
+                    ->columnspanFull(),
+
+                Textarea::make('description')
                     ->columnspanFull(),
             ]);
     }
@@ -51,6 +55,7 @@ class DepartmentResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -65,6 +70,7 @@ class DepartmentResource extends Resource
     {
         return [
             'index' => Pages\ManageDepartments::route('/'),
+            'view' => Pages\ViewDepartment::route('/{record}'),
         ];
     }
 }
