@@ -103,6 +103,7 @@ class StaffResource extends Resource
 
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -125,6 +126,7 @@ class StaffResource extends Resource
         return [
             'index' => Pages\ListStaff::route('/'),
             'create' => Pages\CreateStaff::route('/create'),
+            'view' => Pages\ViewStaff::route('/{record}'),
             'edit' => Pages\EditStaff::route('/{record}/edit'),
         ];
     }
