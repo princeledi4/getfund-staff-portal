@@ -62,6 +62,15 @@ class StaffResource extends Resource
                             ->preload()
                             ->searchable(),
 
+
+                        TextInput::make('email')
+                            ->email()
+                            ->maxLength(255),
+
+                        TextInput::make('phone_number')
+                            ->tel()
+                            ->maxLength(16),
+
                         FileUpload::make('photo')
                             ->required()
                             ->directory('staff')

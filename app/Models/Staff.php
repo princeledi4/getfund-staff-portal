@@ -18,6 +18,8 @@ class Staff extends Model
         'position',
         'photo',
         'department_id',
+        'phone_number',
+        'email',
     ];
 
     public function department(): BelongsTo

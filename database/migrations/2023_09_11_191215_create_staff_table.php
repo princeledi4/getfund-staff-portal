@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('staff_id')->unique();
             $table->string('position')->nullable();
             $table->string('photo')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('email')->nullable();
             $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
