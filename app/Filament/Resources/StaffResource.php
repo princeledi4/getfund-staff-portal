@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\StaffResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -100,6 +101,9 @@ class StaffResource extends Resource
                     ->searchable(),
             ])
             ->filters([
+
+                SelectFilter::make('department')
+                    ->relationship('department', 'name'),
 
             ])
             ->actions([

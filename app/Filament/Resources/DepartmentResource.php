@@ -73,4 +73,11 @@ class DepartmentResource extends Resource
             'view' => Pages\ViewDepartment::route('/{record}'),
         ];
     }
+
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\StaffsRelationManager::class,
+        ];
+    }
 }
