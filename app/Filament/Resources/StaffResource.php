@@ -73,6 +73,7 @@ class StaffResource extends Resource
 
                         FileUpload::make('photo')
                             ->required()
+                            ->maxSize(1024)
                             ->directory('staff')
                             ->imageEditor()
                             ->columnSpanFull()

@@ -1,6 +1,8 @@
 <?php
 
+use App\Livewire\Staff\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShowStaffProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('staff/{staff}/profile', ShowStaffProfileController::class)->name('staff.profile');
