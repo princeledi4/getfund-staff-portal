@@ -27,7 +27,7 @@
                             <div class="max-w-md bg-white p-6 rounded-lg shadow-md">
                                 <div class="text-center">
                                     <img src="{{ Storage::url($staff->photo) }}" alt="User Profile Picture" class="w-32 h-32 mx-auto rounded-full">
-                                    <h2 class="text-xl font-semibold mt-4">J{{ $staff->fullname }}</h2>
+                                    <h2 class="text-xl font-semibold mt-4">{{ $staff->fullname }}</h2>
                                     <p class="text-gray-600">{{ $staff->position }}</p>
                                 </div>
                                 <div class="mt-6">
