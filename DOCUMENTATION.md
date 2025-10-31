@@ -27,7 +27,7 @@
 - **Build Tool:** Vite 4.0.0
 
 ### Project Information
-- **Developer:** rCodez
+- **Developer:** GETFund
 - **Organization:** GetFund (getfund.gov.gh)
 - **Framework:** Laravel 10.x
 - **License:** MIT
