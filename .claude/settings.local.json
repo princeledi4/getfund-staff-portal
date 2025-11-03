@@ -29,7 +29,9 @@
       "Bash(php verify_staff_ids.php:*)",
       "Bash(php -l:*)",
       "Bash(curl:*)",
-      "Bash(mysqldump:*)"
+      "Bash(mysqldump:*)",
+      "Bash(php -i:*)",
+      "Bash(php:*)"
     ],
     "deny": [],
     "ask": []

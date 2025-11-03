@@ -3,10 +3,67 @@
 namespace App\Observers;
 
 use App\Models\Staff;
+use App\Models\ActivityLog;
 use Illuminate\Support\Facades\Log;
 
 class StaffObserver
 {
+    /**
+     * Handle the Staff "created" event.
+     */
+    public function created(Staff $staff): void
+    {
+        ActivityLog::log(
+            description: "Created staff: {$staff->fullname} ({$staff->staff_id})",
+            subject: $staff,
+            event: 'created',
+            properties: ['attributes' => $staff->getAttributes()]
+        );
+    }
+
+    /**
+     * Handle the Staff "updated" event.
+     */
+    public function updated(Staff $staff): void
+    {
+        $changes = $staff->getChanges();
+        $original = $staff->getOriginal();
+
+        // Don't log if only timestamps changed
+        unset($changes['updated_at']);
+
+        if (!empty($changes)) {
+            $description = "Updated staff: {$staff->fullname} ({$staff->staff_id})";
+
+            if (isset($changes['status'])) {
+                $description .= " - Status changed from {$original['status']} to {$changes['status']}";
+            }
+
+            ActivityLog::log(
+                description: $description,
+                subject: $staff,
+                event: 'updated',
+                properties: [
+                    'old' => array_intersect_key($original, $changes),
+                    'new' => $changes,
+                ]
+            );
+        }
+    }
+
+    /**
+     * Handle the Staff "deleted" event.
+     */
+    public function deleted(Staff $staff): void
+    {
+        ActivityLog::log(
+            description: "Deleted staff: {$staff->fullname} ({$staff->staff_id})",
+            subject: $staff,
+            event: 'deleted',
+            properties: ['attributes' => $staff->getAttributes()]
+        );
+    }
+
     /**
      * Handle the Staff "created" and "updated" events.
      * Compress images after saving

@@ -249,6 +249,32 @@ class StaffResource extends Resource
 
                         return response()->download($path, $filename);
                     }),
+                Tables\Actions\Action::make('export')
+                    ->label('Export All Staff')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('success')
+                    ->form([
+                        Select::make('format')
+                            ->label('Export Format')
+                            ->options([
+                                'xlsx' => 'Excel (.xlsx)',
+                                'csv' => 'CSV (.csv)',
+                            ])
+                            ->default('xlsx')
+                            ->required(),
+                    ])
+                    ->action(function (array $data) {
+                        $format = $data['format'] ?? 'xlsx';
+                        $filename = 'staff_export_' . now()->format('Y-m-d_His') . '.' . $format;
+
+                        return Excel::download(new \App\Exports\StaffExport, $filename);
+                    })
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Export successful')
+                            ->body('Staff data has been exported successfully.')
+                    ),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -351,7 +377,7 @@ class StaffResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\DocumentsRelationManager::class,
         ];
     }
 

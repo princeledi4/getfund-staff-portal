@@ -6,6 +6,7 @@ use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Staff extends Model
@@ -44,6 +45,11 @@ class Staff extends Model
         return $this->belongsTo(Department::class)->withDefault([
             'name' => 'Default',
         ]);
+    }
+
+    public function documents(): HasMany
+    {
+        return $this->hasMany(StaffDocument::class);
     }
 
     protected function fullname(): Attribute
