@@ -60,7 +60,7 @@ class StaffResource extends Resource
 
                         FileUpload::make('photo')
                             ->required()
-                            ->maxSize(10240)
+                            ->maxSize(200)
                             ->disk('public')
                             ->directory('staff')
                             ->image()
@@ -71,7 +71,7 @@ class StaffResource extends Resource
                                 '4:3',
                                 '16:9',
                             ])
-                            ->helperText('Upload a photo (up to 10 MB). Large images will be automatically compressed to under 2 MB.')
+                            ->helperText('Upload a photo (maximum 200 KB).')
                             ->columnSpanFull()
                     ])
                     ->columns(2),
