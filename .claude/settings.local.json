@@ -36,7 +36,10 @@
       "Bash(del \"\\\\?\\\\C:\\\\Users\\\\plawagah\\\\Herd\\\\getfund-ussd-main\\\\nul\")",
       "Bash(powershell -Command \"Remove-Item -LiteralPath ''\\\\?\\\\C:\\\\Users\\\\plawagah\\\\Herd\\\\getfund-ussd-main\\\\nul'' -Force\")",
       "Bash(cmd //c \"del \\\\?\\\\C:\\\\Users\\\\plawagah\\\\Herd\\\\getfund-ussd-main\\\\nul\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []
