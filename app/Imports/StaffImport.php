@@ -54,12 +54,23 @@ class StaffImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnErr
     public function rules(): array
     {
         return [
+            // Required fields
             'staff_id' => 'required|unique:staff,staff_id',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+
+            // Optional fields
+            'middle_name' => 'nullable|string|max:255',
+            'position' => 'nullable|string|max:255',
+            'department_id' => 'nullable|integer',
+            'department' => 'nullable|string|max:255',
+            'employment_type' => 'nullable|string|max:50',
+            'date_joined' => 'nullable|date',
+            'status' => 'nullable|string|max:50',
+            'valid_until' => 'nullable|date',
             'email' => 'nullable|email',
             'phone_number' => 'nullable|string|max:20',
-            'position' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
         ];
     }
 
