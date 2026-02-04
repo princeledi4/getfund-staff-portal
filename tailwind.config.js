@@ -4,9 +4,13 @@ export default {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./vendor/filament/**/*.blade.php",
     ],
+    darkMode: 'class',
     theme: {
         extend: {},
     },
-    plugins: [require("@tailwindcss/forms")],
+    plugins: [
+        require("@tailwindcss/forms"),
+    ],
 };
