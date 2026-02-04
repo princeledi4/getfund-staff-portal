@@ -755,7 +755,7 @@ php artisan optimize
 - Review Filament documentation: https://filamentphp.com/docs
 
 ### Development Team
-- **Developer:** rCodez
+- **Developer:** Ghana Education Trust Fund
 - **Organization:** GetFund (getfund.gov.gh)
 
 ---

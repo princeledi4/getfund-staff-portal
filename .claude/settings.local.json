@@ -45,7 +45,10 @@
       "Bash(gh auth status:*)",
       "Bash(git remote add:*)",
       "Bash(git remote remove:*)",
-      "Bash(git remote rename:*)"
+      "Bash(git remote rename:*)",
+      "Bash(dir:*)",
+      "Bash(git revert:*)",
+      "Bash(ssh:*)"
     ],
     "deny": [],
     "ask": []
