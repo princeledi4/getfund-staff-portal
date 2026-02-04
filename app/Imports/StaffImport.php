@@ -57,9 +57,23 @@ class StaffImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnErr
             'staff_id' => 'required|unique:staff,staff_id',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'nullable|email|unique:staff,email',
+            'email' => 'nullable|email',
             'phone_number' => 'nullable|string|max:20',
             'position' => 'nullable|string|max:255',
+        ];
+    }
+
+    /**
+     * Custom validation messages
+     */
+    public function customValidationMessages(): array
+    {
+        return [
+            'staff_id.required' => 'Staff ID is required.',
+            'staff_id.unique' => 'This Staff ID already exists.',
+            'first_name.required' => 'First name is required.',
+            'last_name.required' => 'Last name is required.',
+            'email.email' => 'Invalid email format.',
         ];
     }
 

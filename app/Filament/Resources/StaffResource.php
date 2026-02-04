@@ -183,10 +183,15 @@ class StaffResource extends Resource
                     ->form([
                         FileUpload::make('file')
                             ->label('Excel/CSV File')
+                            ->disk('local')
+                            ->directory('imports')
                             ->acceptedFileTypes([
                                 'application/vnd.ms-excel',
                                 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                                'text/csv'
+                                'text/csv',
+                                '.csv',
+                                '.xls',
+                                '.xlsx',
                             ])
                             ->required()
                             ->helperText('Upload an Excel or CSV file with staff data. Required columns: staff_id, first_name, last_name'),
@@ -194,11 +199,19 @@ class StaffResource extends Resource
                     ->action(function (array $data) {
                         try {
                             $import = new StaffImport;
-                            $filePath = storage_path('app/public/' . $data['file']);
+                            $filePath = storage_path('app/' . $data['file']);
+
+                            if (!file_exists($filePath)) {
+                                throw new \Exception('File not found. Please try uploading again.');
+                            }
+
                             Excel::import($import, $filePath);
 
                             $errors = $import->getErrors();
                             $failures = $import->getFailures();
+
+                            // Clean up the uploaded file
+                            @unlink($filePath);
 
                             if (empty($errors) && empty($failures)) {
                                 Notification::make()
@@ -235,19 +248,16 @@ class StaffResource extends Resource
                             ->label('Choose Format')
                             ->options([
                                 'csv' => 'CSV Format',
-                                'excel' => 'Excel Format (.xlsx)',
+                                'xlsx' => 'Excel Format (.xlsx)',
                             ])
                             ->default('csv')
                             ->required(),
                     ])
                     ->action(function (array $data) {
                         $format = $data['format'] ?? 'csv';
-                        $filename = $format === 'excel'
-                            ? 'staff_import_template.xlsx'
-                            : 'staff_import_template.csv';
-                        $path = storage_path('app/import-templates/' . $filename);
+                        $filename = 'staff_import_template.' . $format;
 
-                        return response()->download($path, $filename);
+                        return Excel::download(new \App\Exports\StaffTemplateExport, $filename);
                     }),
                 Tables\Actions\Action::make('export')
                     ->label('Export All Staff')
