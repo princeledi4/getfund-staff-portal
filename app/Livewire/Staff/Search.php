@@ -16,8 +16,13 @@ class Search extends Component
     #[Rule('max:255')]
     public $surname;
 
+    public $errorMessage = '';
+
     public function searchStaff()
     {
+        // Clear previous error
+        $this->errorMessage = '';
+
         // validate the input
         $this->validate();
 
@@ -28,7 +33,7 @@ class Search extends Component
 
         // return an error message if not found
         if (!$staff) {
-            $this->addError('staff_id', 'The provided Staff ID and Surname do not match our records. Please try again.');
+            $this->errorMessage = 'The provided Staff ID and Surname do not match our records. Please try again.';
             return;
         }
 
