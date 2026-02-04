@@ -16,12 +16,12 @@ class Search extends Component
     #[Rule('max:255')]
     public $surname;
 
-    public $errorMessage = '';
+    public $showError = false;
 
     public function searchStaff()
     {
         // Clear previous error
-        $this->errorMessage = '';
+        $this->showError = false;
 
         // validate the input
         $this->validate();
@@ -31,9 +31,9 @@ class Search extends Component
             ->whereRaw('LOWER(last_name) = ?', [strtolower($this->surname)])
             ->first();
 
-        // return an error message if not found
+        // show popup if not found
         if (!$staff) {
-            $this->errorMessage = 'The provided Staff ID and Surname do not match our records. Please try again.';
+            $this->showError = true;
             return;
         }
 
