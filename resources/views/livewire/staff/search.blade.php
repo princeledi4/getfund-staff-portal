@@ -5,7 +5,7 @@
         We're excited to introduce our Staff Results Portal, designed
         with your convenience in mind. In this secure and
         user-friendly platform, you can easily access your
-        personalized results by entering your unique Staff ID.
+        personalized results by entering your unique Staff ID and Surname.
     </p>
 
     <form wire:submit="searchStaff" method="post">
@@ -20,11 +20,23 @@
                     class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter Staff ID"
                 >
-                <div class="mt-2 text-xs">
-                    @error('staff_id')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
+                @error('staff_id')
+                    <div class="mt-1 text-xs text-red-500">{{ $message }}</div>
+                @enderror
+           </div>
+
+           <div class="mt-4">
+                <input
+                    id="surname"
+                    wire:model.live="surname"
+                    type="text"
+                    autocomplete="off"
+                    class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Enter Surname"
+                >
+                @error('surname')
+                    <div class="mt-1 text-xs text-red-500">{{ $message }}</div>
+                @enderror
            </div>
        </div>
 

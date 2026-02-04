@@ -8,21 +8,28 @@ use Livewire\Attributes\Rule;
 
 class Search extends Component
 {
-    #[Rule('required')]
+    #[Rule('required', message: 'Please enter your Staff ID.')]
     #[Rule('max:20')]
     public $staff_id;
+
+    #[Rule('required', message: 'Please enter your surname.')]
+    #[Rule('max:255')]
+    public $surname;
 
     public function searchStaff()
     {
         // validate the input
         $this->validate();
 
-        // search for the staff
-        $staff = Staff::where('staff_id', $this->staff_id)->first();
+        // search for the staff by staff_id and surname (last_name)
+        $staff = Staff::where('staff_id', $this->staff_id)
+            ->whereRaw('LOWER(last_name) = ?', [strtolower($this->surname)])
+            ->first();
 
-        // return an error message and pass it to the validation laravel error bag
+        // return an error message if not found
         if (!$staff) {
-            $this->addError('staff_id', 'The provided Staff Id does not match our records. Please try again.');
+            $this->addError('staff_id', 'The provided Staff ID and Surname do not match our records. Please try again.');
+            return;
         }
 
         // redirect to the staff profile page
