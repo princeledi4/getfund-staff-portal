@@ -59,7 +59,6 @@ class StaffResource extends Resource
                             ->unique(ignoreRecord: true),
 
                         FileUpload::make('photo')
-                            ->required()
                             ->maxSize(200)
                             ->disk('public')
                             ->directory('staff')
@@ -91,7 +90,6 @@ class StaffResource extends Resource
                             ->searchable(),
 
                         Select::make('employment_type')
-                            ->required()
                             ->options([
                                 'Full-time' => 'Full-time',
                                 'Part-time' => 'Part-time',
@@ -102,11 +100,9 @@ class StaffResource extends Resource
 
                         Forms\Components\DatePicker::make('date_joined')
                             ->label('Date Joined')
-                            ->required()
                             ->default(now()),
 
                         Select::make('status')
-                            ->required()
                             ->options([
                                 'active' => 'Active',
                                 'inactive' => 'Inactive',
@@ -116,7 +112,6 @@ class StaffResource extends Resource
 
                         Forms\Components\DatePicker::make('valid_until')
                             ->label('Valid Until')
-                            ->required()
                             ->default(now()->addYear()),
                     ])
                     ->columns(2),
@@ -336,7 +331,8 @@ class StaffResource extends Resource
                         TextEntry::make('employment_type')
                             ->label('Employment Type')
                             ->badge()
-                            ->color(fn (string $state): string => match ($state) {
+                            ->default('N/A')
+                            ->color(fn (?string $state): string => match ($state) {
                                 'Full-time' => 'success',
                                 'Part-time' => 'warning',
                                 'Contract' => 'info',
@@ -351,7 +347,8 @@ class StaffResource extends Resource
                         TextEntry::make('status')
                             ->label('Status')
                             ->badge()
-                            ->color(fn (string $state): string => match ($state) {
+                            ->default('N/A')
+                            ->color(fn (?string $state): string => match ($state) {
                                 'active' => 'success',
                                 'inactive' => 'gray',
                                 'suspended' => 'danger',
