@@ -1,3 +1,513 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===================================
+   GETFUND TRICOLOR SYSTEM
+   Based on Ghana Flag Colors: Red, Yellow, Green
+   Official GetFund Brand Colors
+   =================================== */
+
+:root {
+  /* ========== GETFUND CORE COLORS ========== */
+
+  /* RED - Symbolizes the blood of those who died for independence */
+  --getfund-red-dark: #B71C1C;
+  --getfund-red: #DC143C;
+  --getfund-red-base: #EF4444;
+  --getfund-red-light: #F87171;
+  --getfund-red-pale: #FEE2E2;
+
+  /* YELLOW/GOLD - Symbolizes the mineral wealth of Ghana */
+  --getfund-gold-dark: #F57F17;
+  --getfund-gold: #FFC107;
+  --getfund-gold-base: #FBBF24;
+  --getfund-gold-light: #FCD34D;
+  --getfund-gold-pale: #FEF3C7;
+
+  /* GREEN - Symbolizes the rich forests and natural wealth */
+  --getfund-green-dark: #1B5E20;
+  --getfund-green: #2E7D32;
+  --getfund-green-base: #10B981;
+  --getfund-green-light: #34D399;
+  --getfund-green-pale: #D1FAE5;
+
+  /* ========== THEME COLORS ========== */
+
+  /* Light Mode */
+  --bg-primary: #FAFBFC;
+  --bg-secondary: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-accent-red: #FFF5F5;
+  --bg-accent-gold: #FFFBEB;
+  --bg-accent-green: #F0FDF4;
+
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
+  --text-muted: #718096;
+
+  --border-color: #E2E8F0;
+  --border-accent: #CBD5E0;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+  /* ========== GETFUND GRADIENTS ========== */
+
+  /* Tricolor Flag Gradient */
+  --gradient-tricolor: linear-gradient(90deg, var(--getfund-red) 0%, var(--getfund-gold) 50%, var(--getfund-green) 100%);
+  --gradient-tricolor-vertical: linear-gradient(180deg, var(--getfund-red) 0%, var(--getfund-gold) 50%, var(--getfund-green) 100%);
+
+  /* Individual Color Gradients */
+  --gradient-red: linear-gradient(135deg, var(--getfund-red-dark) 0%, var(--getfund-red-light) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--getfund-gold-dark) 0%, var(--getfund-gold-light) 100%);
+  --gradient-green: linear-gradient(135deg, var(--getfund-green-dark) 0%, var(--getfund-green-light) 100%);
+
+  /* Premium Combinations */
+  --gradient-primary: linear-gradient(135deg, var(--getfund-red) 0%, var(--getfund-gold) 100%);
+  --gradient-success: linear-gradient(135deg, var(--getfund-green-dark) 0%, var(--getfund-green) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--getfund-red) 0%, var(--getfund-gold) 50%, var(--getfund-green) 100%);
+
+  /* ========== STATUS COLORS ========== */
+  --status-active: var(--getfund-green);
+  --status-inactive: #94A3B8;
+  --status-suspended: var(--getfund-gold);
+  --status-pending: var(--getfund-red);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Theme */
+  --bg-primary: #0B1120;
+  --bg-secondary: #131B2E;
+  --bg-card: #1A2332;
+  --bg-accent-red: #2D1B1E;
+  --bg-accent-gold: #2D2516;
+  --bg-accent-green: #1B2D1E;
+
+  --text-primary: #F7FAFC;
+  --text-secondary: #CBD5E0;
+  --text-muted: #94A3B8;
+
+  --border-color: #2D3748;
+  --border-accent: #4A5568;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.5);
+
+  /* Adjusted gradients for dark mode visibility */
+  --gradient-red: linear-gradient(135deg, var(--getfund-red-dark) 0%, var(--getfund-red) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--getfund-gold-dark) 0%, var(--getfund-gold) 100%);
+  --gradient-green: linear-gradient(135deg, var(--getfund-green-dark) 0%, var(--getfund-green) 100%);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.staff-profile-container {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.staff-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.staff-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.staff-header-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.staff-logo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.staff-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.staff-header-main {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.staff-org-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.staff-theme-toggle {
+  width: 50px;
+  height: 26px;
+  background: var(--bg-secondary);
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.theme-icon {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-icon {
+  transform: translateX(24px);
+}
+
+.staff-verification-banner {
+  background: var(--getfund-green);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.staff-verification-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.staff-verification-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.staff-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 968px) {
+  .staff-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.staff-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.staff-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: none;
+}
+
+.staff-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.staff-profile-card {
+  text-align: center;
+}
+
+.staff-profile-image-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+}
+
+.staff-profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--bg-card);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.staff-profile-image:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl), 0 0 0 1px var(--getfund-gold);
+}
+
+.staff-status-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: var(--gradient-success);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--bg-card);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.staff-status-badge.inactive {
+  background: linear-gradient(135deg, var(--getfund-red-dark) 0%, var(--getfund-red) 100%);
+  box-shadow: var(--shadow-lg);
+}
+
+.staff-status-badge.suspended {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  box-shadow: var(--shadow-lg);
+}
+
+.staff-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.staff-role {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.staff-id-badge {
+  display: inline-block;
+  background: var(--getfund-green);
+  color: white;
+  padding: 0.75rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-lg);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.staff-id-badge:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+.staff-valid-until {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  font-weight: 500;
+}
+
+.staff-decorative-border {
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 4px;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.staff-info-section {
+  margin-bottom: 2rem;
+}
+
+.staff-info-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.staff-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.staff-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.staff-info-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.staff-info-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.staff-contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.staff-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.staff-contact-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent-blue);
+}
+
+.staff-verification-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.staff-verification-item {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-green);
+}
+
+.staff-verification-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.staff-verification-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.staff-badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.staff-badge {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+}
+
+.staff-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .staff-container {
+    padding: 1rem;
+  }
+
+  .staff-name {
+    font-size: 1.5rem;
+  }
+
+  .staff-profile-image-wrapper {
+    width: 160px;
+    height: 160px;
+  }
+
+  .staff-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
