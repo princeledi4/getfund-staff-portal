@@ -444,13 +444,6 @@
                 <p class="staff-role">{{ $staff->position }}</p>
                 <div class="staff-id-badge">STAFF ID: {{ $staff->staff_id }}</div>
 
-                <div class="valid-until">
-                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>Valid until: <strong>{{ $staff->valid_until ? \Carbon\Carbon::parse($staff->valid_until)->format('F d, Y') : 'N/A' }}</strong></span>
-                </div>
-
                 <div class="decorative-border"></div>
             </div>
 
@@ -523,7 +516,7 @@
         </div>
 
         <div class="footer">
-            <p>Copyright &copy; {{ now()->format('Y') }} Getfund | Powered by: <a href="javascript:void(0)">rCodez</a></p>
+            <p>Copyright &copy; {{ now()->format('Y') }} Getfund | Powered by: <a href="javascript:void(0)">Ghana Education Trust Fund</a></p>
         </div>
     </div>
 
