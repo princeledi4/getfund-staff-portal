@@ -31,6 +31,14 @@ class StaffImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnErr
             $department = Department::where('name', $row['department'])->first();
         }
 
+        // If no department found, get or create a default department
+        if (!$department) {
+            $department = Department::firstOrCreate(
+                ['name' => 'General'],
+                ['slug' => 'general', 'description' => 'Default department for imported staff']
+            );
+        }
+
         return new Staff([
             'staff_id' => $row['staff_id'] ?? null,
             'first_name' => $row['first_name'] ?? null,
@@ -41,7 +49,7 @@ class StaffImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnErr
             'position' => $row['position'] ?? null,
             'employment_type' => $row['employment_type'] ?? 'Full-time',
             'date_joined' => !empty($row['date_joined']) ? Carbon::parse($row['date_joined']) : null,
-            'department_id' => $department?->id,
+            'department_id' => $department->id,
             'location' => $row['location'] ?? null,
             'status' => $row['status'] ?? 'active',
             'valid_until' => !empty($row['valid_until']) ? Carbon::parse($row['valid_until']) : Carbon::now()->addYear(),
