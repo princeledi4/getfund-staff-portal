@@ -16,6 +16,12 @@
 
         @vite('resources/css/app.css')
         @livewireStyles
+        <style>
+            .swal-confirm-btn {
+                color: white !important;
+                font-weight: 600 !important;
+            }
+        </style>
     </head>
     <body class="antialiased" data-theme="light">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center selection:bg-red-500 selection:text-white" style="background-color: var(--bg-primary);">

@@ -73,6 +73,9 @@
                 confirmButtonColor: '#10b981',
                 background: getComputedStyle(document.documentElement).getPropertyValue('--bg-secondary') || '#ffffff',
                 color: getComputedStyle(document.documentElement).getPropertyValue('--text-primary') || '#000000',
+                customClass: {
+                    confirmButton: 'swal-confirm-btn'
+                }
             });
         });
     });
