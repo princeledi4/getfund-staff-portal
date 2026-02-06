@@ -70,6 +70,9 @@ class StaffResource extends Resource
                                 '4:3',
                                 '16:9',
                             ])
+                            ->imageResizeMode('cover')
+                            ->imageResizeTargetWidth('400')
+                            ->imageResizeTargetHeight('400')
                             ->helperText('Upload a photo (maximum 200 KB).')
                             ->columnSpanFull()
                     ])
